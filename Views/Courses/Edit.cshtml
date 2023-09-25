@@ -1,0 +1,75 @@
+﻿@model LearningApp.Models.CourseEditDto
+
+@{
+	ViewData["Title"] = "Edit";
+}
+<section class="d-flex justify-content-center align-items-center mt-4">
+
+
+	<div class="row">
+		<h2>Edit Courses</h2>
+		<hr />
+		<div class="col-md-12">
+			<form asp-action="Edit" method="post" enctype="multipart/form-data">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				<input type="hidden" asp-for="Id" />
+				<div class="form-group">
+					<label asp-for="Title" class="control-label"></label>
+					<input asp-for="Title" class="form-control" />
+					<span asp-validation-for="Title" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Description" class="control-label"></label>
+					<input asp-for="Description" class="form-control" />
+					<span asp-validation-for="Description" class="text-danger"></span>
+				</div>
+				@if (User.IsInRole("Admin"))
+				{
+					<div class="form-group">
+						<label asp-for="InstructorId" class="control-label"></label>
+						<select asp-for="InstructorId" class="form-control">
+							@foreach (var item in ViewBag.InstructorData)
+							{
+								<option value="@item.Value">@item.Text</option>
+							}
+						</select>
+						<span asp-validation-for="InstructorId" class="text-danger"></span>
+					</div>
+				}
+				
+				<div class="form-group">
+					<label asp-for="Category" class="control-label"></label>
+					<input asp-for="Category" class="form-control" />
+					<span asp-validation-for="Category" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="EnrollmentCount" class="control-label"></label>
+					<input asp-for="EnrollmentCount" class="form-control" />
+					<span asp-validation-for="EnrollmentCount" class="text-danger"></span>
+				</div>
+				
+				<div class="form-group">
+					<label asp-for="CourseImage"></label>
+					<input type="file" name="CourseImage" class="form-control" />
+					<img src="/images/@Model.ImageUrl" width="400" height="200">
+					<small class="text-danger"><strong>*</strong> Resminiz 400:200 oranında olmalıdır.</small>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="CourseDuration" class="control-label"></label>
+					<input asp-for="CourseDuration" class="form-control" />
+					<span asp-validation-for="CourseDuration" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<input type="submit" value="Save" class="btn btn-primary btn-sm mt-3" />
+					<a class="btn btn-success btn-sm mt-3" asp-action="CourseList" asp-controller="Users">Back to List</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

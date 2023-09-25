@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Enrollment Confirmation";
+}
+
+<h2>Enrollment Confirmation</h2>
+
+<div class="alert alert-success">
+    Congratulations! You have successfully enrolled in the course.
+</div>
+
+<p>
+    Course Title: @Model.CourseTitle
+</p>
+
+<p>
+    Enrollment Date: @Model.EnrollmentDate.ToString("MMMM dd, yyyy")
+</p>
+
+<p>
+    <a asp-action="Index">Back to Courses</a>
+</p>

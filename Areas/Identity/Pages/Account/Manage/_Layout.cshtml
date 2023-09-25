@@ -1,0 +1,36 @@
+﻿@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout !=  null)
+    {
+        Layout = parentLayout.ToString();
+    }
+    else
+    {
+        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    }
+}
+<main id="main" data-aos="fade-in">
+
+	<!-- ======= Breadcrumbs ======= -->
+	<div class="breadcrumbs">
+		<div class="container">
+			<h1>Manage your account</h1>
+		</div>
+	</div><!-- End Breadcrumbs -->
+	<!-- ======= Courses Section ======= -->
+	<section id="profile" class="courses">
+		<div class="container" data-aos="fade-up">
+			<div class="row" data-aos="zoom-in" data-aos-delay="100">
+                <h2>My Account</h2>
+                <div class="col-md-3">
+                    <partial name="_ManageNav" />
+                </div>
+                <div class="col-md-9">
+                    @RenderBody()
+                </div>
+            </div>
+		</div>
+	</section>
+</main>
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

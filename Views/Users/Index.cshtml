@@ -1,0 +1,71 @@
+﻿@using System.Configuration;
+@using Microsoft.Data.SqlClient;
+@* @model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser> *@
+@using LearningApp.Controllers;
+@model IEnumerable<UserWasRole>
+
+
+
+@{
+	Layout = "_LayoutAdmin";
+	ViewData["Title"] = "User List";
+	var connectionString = ViewBag.ConnectionString;
+}
+<link rel="stylesheet" href="~/css/dataTables.bootstrap.min.css">
+<div class="content-wrapper">
+	<div class="d-flex text-center justify-content-center mt-5">
+		<h2>User List</h2>
+	</div>
+
+
+	<section class="content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header">
+						<a class="btn btn-primary btn-sm mt-2" asp-action="Create">Create New User</a>
+					</div>
+
+
+					<!-- /.box-header -->
+					<div class="box-body">
+						<table id="UserTable" class="table table-bordered table-stripe">
+							<thead>
+								<tr>
+									<th>User Name</th>
+									<th>Roles</th>
+									<th>Actions</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var user in Model)
+								{
+
+									<tr>
+										<td>
+											@Html.DisplayFor(modelItem => user.Username)
+										</td>
+
+										<td>
+											@foreach(var x in user.Roles){
+											@x
+											}
+										</td>
+										<td>
+											<a class="btn btn-warning btn-sm mt-2"  asp-action="Edit" asp-route-id="@user.Id">Edit</a> 
+											<a class="btn btn-info btn-sm mt-2" asp-action="Details" asp-route-id="@user.Id">Details</a> 
+											<a  class="btn btn-danger btn-sm mt-2" asp-action="Delete" asp-route-id="@user.Id">Delete</a>
+										</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</div>
+

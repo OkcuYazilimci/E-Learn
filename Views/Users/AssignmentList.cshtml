@@ -1,0 +1,70 @@
+﻿@model IEnumerable<elearningapp.Models.Assignments>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "_LayoutAdmin";
+}
+
+
+<link rel="stylesheet" href="~/css/dataTables.bootstrap.min.css">
+<div class="content-wrapper">
+	<div class="d-flex text-center justify-content-center mt-5">
+		<h2>@ViewBag.CourseName Assignments </h2>
+	</div>
+
+
+	<section class="content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header">
+						<a class="btn btn-success btn-sm mt-2" asp-action="Create" asp-controller="Assignments" asp-route-CourseId="@ViewBag.CourseId">Create New Assignment</a>
+					</div>
+
+
+					<!-- /.box-header -->
+					<div class="box-body">
+						<table id="AssignmentTable" class="table table-bordered table-stripe">
+							<thead>
+								<tr>
+									<th>
+										@Html.DisplayNameFor(model => model.Title)
+									</th>
+									<th>
+										@Html.DisplayNameFor(model => model.Description)
+									</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td>
+											@Html.DisplayFor(modelItem => item.Title)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.Description)
+										</td>
+										<td>
+											@if (User.IsInRole("Admin") || User.IsInRole("Instructor"))
+											{
+												<a class="btn btn-primary btn-sm" asp-action="Edit" asp-controller="Assignments" asp-route-id="@item.Id">Edit </a>
+											}
+
+											@if (User.IsInRole("Admin") || User.IsInRole("Instructor"))
+											{
+												<a class="btn btn-danger btn-sm" asp-action="Delete" asp-controller="Assignments" asp-route-id="@item.Id">Delete</a>
+											}
+										</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</div>

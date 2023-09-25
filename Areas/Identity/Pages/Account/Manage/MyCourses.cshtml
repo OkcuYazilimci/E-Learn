@@ -1,0 +1,47 @@
+﻿@page
+@model MyCoursesData;
+@{
+    ViewData["Title"] = "My Courses";
+    ViewData["ActivePage"] = ManageNavPages.MyCourses;
+}
+
+<div class="row">
+    <div class="col-9">
+        <h3>@ViewData["Title"]</h3>
+    </div>
+    <div class="col-3">
+        <a class="btn btn-primary btn-sm" asp-action="" asp-controller="Courses">View All Courses</a>
+    </div>
+   
+    <div class="col-md-12">
+        <section id="course-details-tabs" class="course-details-tabs">
+            <div class="container" data-aos="fade-up">
+                <div class="accordion" id="accordionExample">
+                    @foreach (var item in Model.Input.CourseList)
+                    {
+                    
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading_@item.Id">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.Id" aria-expanded="false" aria-controls="collapse_@item.Id">
+                                    @item.Title
+                                  
+                                </button>
+                                
+                            </h2>
+                            <div id="collapse_@item.Id" class="accordion-collapse collapse" aria-labelledby="heading_@item.Id" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    @item.Description
+                                    <a class="btn btn-primary btn-sm" asp-action="Index" asp-controller="Assignments" asp-route-id="@item.Id">Show Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section><!-- End Course Details Tabs Section -->
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

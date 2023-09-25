@@ -1,0 +1,205 @@
+﻿@model LearningApp.Models.DashboardModel;
+
+
+<section id="hero" class="d-flex justify-content-center align-items-center">
+    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+        <h1>Learning Today,<br>Leading Tomorrow</h1>
+    </div>
+</section><!-- End Hero -->
+
+<main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row">
+                <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+                    <img src="~/images/about.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+                    <h3>Key Features of Our Online Learning Platform</h3>
+                    <p class="fst-italic">
+
+                    </p>
+                    <ul>
+                        <li><i class="bi bi-check-circle"></i> Offers a diverse selection of courses covering different subjects, skill levels, and formats.</li>
+                        <li><i class="bi bi-check-circle"></i> Courses are taught by expert, qualified instructors.</li>
+                        <li><i class="bi bi-check-circle"></i> Allows students to track their progress. </li>
+                        <li><i class="bi bi-check-circle"></i> User-friendly interface and easy navigation. </li>
+                        <li><i class="bi bi-check-circle"></i> Regularly updates content to stay current. </li>
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section id="counts" class="counts section-bg">
+        <div class="container">
+
+            <div class="row counters">
+
+                <div class="col-lg-3 col-6 text-center">
+                    <span data-purecounter-start="0" data-purecounter-end="@Model.StudentCount" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Students</p>
+                </div>
+
+                <div class="col-lg-3 col-6 text-center">
+                    <span data-purecounter-start="0" data-purecounter-end="@Model.CourseCount" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Courses</p>
+                </div>
+
+                <div class="col-lg-3 col-6 text-center">
+                    <span data-purecounter-start="0" data-purecounter-end="@Model.AssignmentCount" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Assignments</p>
+                </div>
+
+                <div class="col-lg-3 col-6 text-center">
+                    <span data-purecounter-start="0" data-purecounter-end="@Model.InstructorCount" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Trainers</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <section id="popular-courses" class="courses">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>Courses</h2>
+                <p>Popular Courses</p>
+                <a class="btn btn-primary btn-sm" asp-action="" asp-controller="Courses" >
+                    View All Courses
+                </a>
+            </div>
+
+            <div class="row" data-aos="zoom-in" data-aos-delay="100">
+                @foreach(var item in Model.courses)
+                   {
+                    <div class="col-lg-4 d-flex align-items-stretch">
+                        <div class="course-item">
+                            <img src="~/images/@item.ImageUrl" class="img-fluid" alt="...">
+                            <div class="course-content">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4>@item.Category</h4>
+                                </div>
+
+                                <h3><a asp-action="" asp-controller="Assignments" asp-route-id="@item.Id">@item.Title</a></h3>
+                                <p>@item.Description</p>
+                                <div class="trainer d-flex justify-content-between align-items-center">
+                                    <div class="trainer-profile d-flex align-items-center">
+                                    </div>
+                                    <div class="trainer-rank d-flex align-items-center">
+                                        <i class="bx bx-user"></i>&nbsp;@item.EnrollmentCount
+                                        &nbsp;&nbsp;
+                                        <i class="bx bx-time"></i>&nbsp;@item.CourseDuration
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   }
+
+                 <!-- End Course Item-->
+
+            </div>
+
+        </div>
+    </section><!-- End Popular Courses Section -->
+    <!-- ======= Trainers Section ======= -->
+</main><!-- End #main -->
+@* <!--<div class="overlay">
+    </div>
+    <section id="home" class="video-section js-height-full">
+
+        <div class="home-text-wrapper relative container">
+            <div class="home-message">
+                <p>Learning Management System</p>
+                <small>Edulogy is the ideal choice for your organization, your business and your online education system. Create your online course now with unlimited page templates, color options, and menu features.</small>
+                <div class="btn-wrapper">
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary wow slideInLeft">Read More</a> &nbsp;&nbsp;&nbsp;<a href="#" class="btn btn-default wow slideInRight">Buy Now</a>
+                    </div>
+                </div><!-- end row -->
+            </div>
+        </div>
+        <div class="slider-bottom">
+            <span>Explore <i class="fa fa-angle-down"></i></span>
+        </div>
+    </section>
+    <section class="section gb">
+        <div class="container">
+
+            <div class="section-title text-center">
+                <h3>Courses</h3>
+            </div><!-- end title -->
+            <div class="section-button text-end" style="margin-bottom:10px;">
+                <a class="btn btn-primary" asp-action="" asp-controller="Courses" >View All Courses</a>
+            </div>
+            <div id="owl-01" class="owl-carousel owl-theme owl-theme-01">
+                @foreach(var item in Model){
+                <div class="caro-item">
+                    <div class="course-box">
+                        <div class="image-wrap entry">
+                            <img src="@item.ImageUrl" alt="" class="img-responsive">
+                            <div class="magnifier">
+                                <a href="#" title=""><i class="flaticon-add"></i></a>
+                            </div>
+                        </div>
+                        <div class="course-details">
+                            <h4>
+                                <small>@item.Category</small>
+                                <a href="#" title="">@item.Title</a>
+                            </h4>
+                            <p>@item.Description</p>
+                        </div>
+                        <div class="course-footer clearfix">
+                            <div class="pull-left">
+                                <ul class="list-inline">
+                                    <li><a href="#"><i class="fa fa-user"></i> @item.EnrollmentCount</a></li>
+                                    <li><a href="#"><i class="fa fa-clock-o"></i>@item.CourseDuration</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+            <hr class="invis">
+
+
+        </div>
+
+    </section>
+
+    <section class="section db">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div class="stat-count">
+                        <h4 class="stat-timer">1230</h4>
+                        <h3><i class="flaticon-black-graduation-cap-tool-of-university-student-for-head"></i> Happy Students</h3>
+                        <p>Quisque porttitor eros quis leo pulvinar, at hendrerit sapien iaculis. </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4">
+                    <div class="stat-count">
+                        <h4 class="stat-timer">331</h4>
+                        <h3><i class="flaticon-online-course"></i> Course Done</h3>
+                        <p>Quisque porttitor eros quis leo pulvinar, at hendrerit sapien iaculis. </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4">
+                    <div class="stat-count">
+                        <h4 class="stat-timer">8901</h4>
+                        <h3><i class="flaticon-coffee-cup"></i> Ordered Coffe's</h3>
+                        <p>Quisque porttitor eros quis leo pulvinar, at hendrerit sapien iaculis. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    --> *@

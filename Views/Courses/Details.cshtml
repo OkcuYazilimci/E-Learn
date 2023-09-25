@@ -1,0 +1,60 @@
+﻿@model elearningapp.Models.Courses
+
+@{
+	ViewData["Title"] = "Course Details";
+}
+<section class="d-flex justify-content-center align-items-center mt-4">
+	
+	<div class="row">
+		<h2>@ViewData["Title"] </h2>
+		<hr />
+		<dl class="dl-horizontal">
+			<dt>
+				@Html.DisplayNameFor(model => model.Title)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Title)
+			</dd>
+			<dt>
+				@Html.DisplayNameFor(model => model.Description)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Description)
+			</dd>
+			<dt>
+				@Html.DisplayNameFor(model => model.Category)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Category)
+			</dd>
+			<dt>
+				@Html.DisplayNameFor(model => model.EnrollmentCount)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.EnrollmentCount)
+			</dd>
+			<dt>
+				@Html.DisplayNameFor(model => model.ImageUrl)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.ImageUrl)
+			</dd>
+			<dt>
+				@Html.DisplayNameFor(model => model.CourseDuration)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.CourseDuration)
+			</dd>
+			<dt>
+				@Html.DisplayNameFor(model => model.Instructor)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Instructor.Id)
+			</dd>
+		</dl>
+		<div>
+			<a class="btn btn-warning btn-sm btn mt-3" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> 
+			<a class="btn btn-success btn-sm btn mt-3" asp-action="CourseList" asp-controller="Users">Back to List</a>
+		</div>
+	</div>
+</section>
